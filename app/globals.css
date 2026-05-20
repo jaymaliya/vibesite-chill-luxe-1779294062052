@@ -1,0 +1,646 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─────────────────────────────────────────────
+   Design Tokens — Chill Luxe Brand System
+───────────────────────────────────────────── */
+:root {
+  --primary:       #ffb2bf;
+  --secondary:     #fff0c0;
+  --accent:        #65de7c;
+  --bg:            #0a0a0a;
+  --surface:       #200e12;
+  --text:          #fcdadf;
+  --muted:         #ad878d;
+  --cta:           #ff006e;
+  --level-1:       #1a1a1a;
+
+  --radius-btn:    16px;
+  --radius-card:   16px;
+  --radius-input:  16px;
+
+  --shadow-card:   0 1px 3px rgba(0,0,0,0.07), 0 8px 24px rgba(0,0,0,0.04);
+  --shadow-hover:  0 4px 12px rgba(0,0,0,0.10), 0 20px 48px rgba(0,0,0,0.08);
+  --ease-smooth:   cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ─────────────────────────────────────────────
+   Base Reset & Global Defaults
+───────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  color: var(--text);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img, video {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-family: inherit;
+}
+
+input, textarea, select {
+  font-family: inherit;
+}
+
+/* ─────────────────────────────────────────────
+   @keyframes Library
+───────────────────────────────────────────── */
+
+/* Page entry fade */
+@keyframes pageFade {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* Toast slide in from right */
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(60px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+/* Toast slide out to right */
+@keyframes slideOutRight {
+  from { opacity: 1; transform: translateX(0); }
+  to   { opacity: 0; transform: translateX(60px); }
+}
+
+/* Shimmer skeleton loading */
+@keyframes shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position:  200% 0; }
+}
+
+/* Gentle float for hero elements */
+@keyframes float {
+  0%   { transform: translateY(0px); }
+  50%  { transform: translateY(-12px); }
+  100% { transform: translateY(0px); }
+}
+
+/* Slow spin for decorative blobs */
+@keyframes spinSlow {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+/* Pulse glow for CTA buttons */
+@keyframes pulseGlow {
+  0%   { box-shadow: 0 0 0 0 rgba(255, 0, 110, 0.45); }
+  70%  { box-shadow: 0 0 0 14px rgba(255, 0, 110, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(255, 0, 110, 0); }
+}
+
+/* Soft scale bounce for product cards on load */
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.92); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+/* Marquee scroll for trust-bar */
+@keyframes marquee {
+  from { transform: translateX(0%); }
+  to   { transform: translateX(-50%); }
+}
+
+/* Gradient shift for hero background */
+@keyframes gradientShift {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Drip animation for ice cream theme */
+@keyframes drip {
+  0%   { transform: scaleY(0); opacity: 1; }
+  80%  { transform: scaleY(1); opacity: 1; }
+  100% { transform: scaleY(1); opacity: 0; }
+}
+
+/* Fade up for staggered content */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(32px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Blink cursor */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+/* ─────────────────────────────────────────────
+   Stitch Design System Classes (preserved)
+───────────────────────────────────────────── */
+
+.luxury-card {
+  background-color: #1a1a1a;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-card);
+  transition: border-color 0.3s var(--ease-smooth);
+}
+
+.luxury-card:hover {
+  border-color: rgba(255, 178, 191, 0.25);
+}
+
+.glass-panel {
+  background: rgba(26, 26, 26, 0.4);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.primary-btn {
+  background-color: var(--cta);
+  color: #ffffff;
+  border-radius: 9999px;
+  padding: 0.75rem 2rem;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 0.9rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.primary-btn:hover {
+  opacity: 0.9;
+  transform: scale(0.98);
+  animation: pulseGlow 1.2s ease-out;
+}
+
+.ghost-btn {
+  background-color: transparent;
+  border: 2px solid #ffffff;
+  color: #ffffff;
+  border-radius: 9999px;
+  padding: 0.75rem 2rem;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 0.9rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.ghost-btn:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.made-in-india {
+  background-color: #ffd60a;
+  color: #000000;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+}
+
+/* ─────────────────────────────────────────────
+   Scroll Reveal System
+   Visible by default — JS adds .is-hidden before observing
+───────────────────────────────────────────── */
+.reveal {
+  transition: opacity 0.6s var(--ease-smooth), transform 0.6s var(--ease-smooth);
+}
+
+.reveal.is-hidden {
+  opacity: 0;
+  transform: translateY(28px);
+}
+
+.reveal.visible {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
+
+/* Staggered reveal variants */
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+.reveal-delay-5 { transition-delay: 0.5s; }
+
+/* ─────────────────────────────────────────────
+   Page Entry Animation
+───────────────────────────────────────────── */
+.page-enter {
+  animation: pageFade 0.45s var(--ease-smooth) both;
+}
+
+/* ─────────────────────────────────────────────
+   Toast Notifications
+───────────────────────────────────────────── */
+.toast-enter {
+  animation: slideInRight 0.35s var(--ease-smooth) both;
+}
+
+.toast-exit {
+  animation: slideOutRight 0.3s var(--ease-smooth) both;
+}
+
+/* ─────────────────────────────────────────────
+   Button Utilities
+───────────────────────────────────────────── */
+.btn-lift {
+  transition: transform 0.2s var(--ease-smooth), box-shadow 0.2s var(--ease-smooth);
+  cursor: pointer;
+}
+
+.btn-lift:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.28);
+}
+
+.btn-lift:active {
+  transform: translateY(0px);
+}
+
+.btn-pulse:hover {
+  animation: pulseGlow 1s ease-out infinite;
+}
+
+/* ─────────────────────────────────────────────
+   Card Hover Effects
+───────────────────────────────────────────── */
+.card-hover {
+  transition: transform 0.25s var(--ease-smooth), box-shadow 0.25s var(--ease-smooth), border-color 0.25s var(--ease-smooth);
+}
+
+.card-hover:hover {
+  transform: translateY(-5px) scale(1.01);
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.35);
+}
+
+/* ─────────────────────────────────────────────
+   Skeleton / Shimmer Loading
+───────────────────────────────────────────── */
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.04) 25%,
+    rgba(255, 255, 255, 0.08) 50%,
+    rgba(255, 255, 255, 0.04) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 8px;
+}
+
+/* ─────────────────────────────────────────────
+   Float Animation Utility
+───────────────────────────────────────────── */
+.animate-float {
+  animation: float 5s ease-in-out infinite;
+}
+
+.animate-float-slow {
+  animation: float 7s ease-in-out infinite;
+}
+
+.animate-float-fast {
+  animation: float 3.5s ease-in-out infinite;
+}
+
+/* ─────────────────────────────────────────────
+   Gradient Backgrounds
+───────────────────────────────────────────── */
+.gradient-hero {
+  background: linear-gradient(
+    135deg,
+    #0a0a0a 0%,
+    #200e12 40%,
+    #1a0810 70%,
+    #0a0a0a 100%
+  );
+  background-size: 300% 300%;
+  animation: gradientShift 12s ease infinite;
+}
+
+.gradient-text {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 50%, var(--accent) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gradient-cta {
+  background: linear-gradient(135deg, var(--cta) 0%, #ff4593 100%);
+}
+
+/* ─────────────────────────────────────────────
+   Marquee Trust Bar
+───────────────────────────────────────────── */
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 28s linear infinite;
+}
+
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+/* ─────────────────────────────────────────────
+   Scrollbar Utilities
+───────────────────────────────────────────── */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Custom styled scrollbar for the page */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--surface);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--muted);
+}
+
+/* ─────────────────────────────────────────────
+   Form & Input Styles
+───────────────────────────────────────────── */
+.brand-input {
+  background: rgba(32, 14, 18, 0.6);
+  border: 1px solid rgba(255, 178, 191, 0.2);
+  border-radius: var(--radius-input);
+  color: var(--text);
+  padding: 0.75rem 1.25rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
+  width: 100%;
+  transition: border-color 0.2s ease, background 0.2s ease;
+  outline: none;
+}
+
+.brand-input::placeholder {
+  color: var(--muted);
+}
+
+.brand-input:focus {
+  border-color: rgba(255, 178, 191, 0.6);
+  background: rgba(32, 14, 18, 0.9);
+}
+
+/* ─────────────────────────────────────────────
+   Badge & Tag Styles
+───────────────────────────────────────────── */
+.badge-primary {
+  background: rgba(255, 178, 191, 0.15);
+  color: var(--primary);
+  border: 1px solid rgba(255, 178, 191, 0.3);
+  border-radius: 9999px;
+  padding: 0.2rem 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.badge-accent {
+  background: rgba(101, 222, 124, 0.15);
+  color: var(--accent);
+  border: 1px solid rgba(101, 222, 124, 0.3);
+  border-radius: 9999px;
+  padding: 0.2rem 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.badge-new {
+  background: linear-gradient(135deg, var(--cta), #ff4593);
+  color: #ffffff;
+  border-radius: 9999px;
+  padding: 0.2rem 0.75rem;
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+/* ─────────────────────────────────────────────
+   Divider
+───────────────────────────────────────────── */
+.brand-divider {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 178, 191, 0.2) 50%,
+    transparent 100%
+  );
+}
+
+/* ─────────────────────────────────────────────
+   Section Spacing
+───────────────────────────────────────────── */
+.section-padding {
+  padding: 5rem 1.5rem;
+}
+
+.section-padding-sm {
+  padding: 3rem 1.5rem;
+}
+
+.container-brand {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+/* ─────────────────────────────────────────────
+   Blob / Decorative Background Elements
+───────────────────────────────────────────── */
+.blob {
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.18;
+  pointer-events: none;
+  position: absolute;
+}
+
+.blob-primary {
+  background: var(--primary);
+}
+
+.blob-secondary {
+  background: var(--secondary);
+}
+
+.blob-accent {
+  background: var(--accent);
+}
+
+.blob-cta {
+  background: var(--cta);
+}
+
+/* ─────────────────────────────────────────────
+   Image Overlay Gradients
+───────────────────────────────────────────── */
+.img-overlay-bottom {
+  background: linear-gradient(
+    to bottom,
+    transparent 30%,
+    rgba(10, 10, 10, 0.7) 70%,
+    rgba(10, 10, 10, 0.95) 100%
+  );
+}
+
+.img-overlay-full {
+  background: rgba(10, 10, 10, 0.5);
+}
+
+/* ─────────────────────────────────────────────
+   Ice Cream Drip Accent
+───────────────────────────────────────────── */
+.drip-element {
+  transform-origin: top center;
+  animation: drip 2s ease-in-out infinite alternate;
+}
+
+/* ─────────────────────────────────────────────
+   Fade Up Staggered Content
+───────────────────────────────────────────── */
+.fade-up {
+  animation: fadeUp 0.6s var(--ease-smooth) both;
+}
+
+.fade-up-1 { animation-delay: 0.1s; }
+.fade-up-2 { animation-delay: 0.2s; }
+.fade-up-3 { animation-delay: 0.3s; }
+.fade-up-4 { animation-delay: 0.4s; }
+.fade-up-5 { animation-delay: 0.5s; }
+.fade-up-6 { animation-delay: 0.6s; }
+
+/* ─────────────────────────────────────────────
+   Scale In for Product Cards
+───────────────────────────────────────────── */
+.scale-in {
+  animation: scaleIn 0.5s var(--ease-smooth) both;
+}
+
+/* ─────────────────────────────────────────────
+   Spin Slow (decorative)
+───────────────────────────────────────────── */
+.spin-slow {
+  animation: spinSlow 18s linear infinite;
+}
+
+/* ─────────────────────────────────────────────
+   Mobile Helpers
+───────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .hide-mobile {
+    display: none !important;
+  }
+
+  .stack-mobile {
+    flex-direction: column !important;
+  }
+
+  .full-mobile {
+    width: 100% !important;
+  }
+
+  .section-padding {
+    padding: 3.5rem 1rem;
+  }
+
+  .section-padding-sm {
+    padding: 2rem 1rem;
+  }
+
+  .container-brand {
+    padding: 0 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  h1 { font-size: clamp(2rem, 8vw, 3.5rem); }
+  h2 { font-size: clamp(1.5rem, 6vw, 2.5rem); }
+}
+
+/* ─────────────────────────────────────────────
+   Focus Visible (Accessibility)
+───────────────────────────────────────────── */
+:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* ─────────────────────────────────────────────
+   Selection Color
+───────────────────────────────────────────── */
+::selection {
+  background: rgba(255, 178, 191, 0.3);
+  color: var(--text);
+}
